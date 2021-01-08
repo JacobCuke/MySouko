@@ -1,19 +1,25 @@
 {% extends "souko/base.html" %}
 
 {% block content %}
-  <article class="media content-section">
-    <img class="cover-art" src="aot_25.jpg" alt="cover_art">
-    <div class="media-body">
-      <div class="content-title">
-        <h2 class="pl-2">進撃の巨人 ２５</h2>
+  {% for item in items %}
+    <article class="media content-section">
+      <img class="cover-art" src="{{ item.cover_art }}" alt="cover_art">
+      <div class="media-body">
+        <div class="content-title">
+          <h2 class="pl-2">{{ item.title }}</h2>
+        </div>
+        <div class="content-data pl-2 pt-3">
+          <p><span class="data-title">Series:</span>{{ item.series }}</p>
+          <p><span class="data-title">Genre:</span>{{ item.genre }}</p>
+          {% if item.completed %}
+            <p><span class="data-title">Status:</span><span class="content-completed">完了</span></p>
+          {% else %}
+            <p><span class="data-title">Status:</span><span class="content-inprogress">未完</span></p>
+          {% endif %}
+          <p><span class="data-title">Date Started:</span>{{ item.date_started }}</p>
+          <p><span class="data-title">Date Completed:</span>{{ item.date_completed }}</p>
+        </div>
       </div>
-      <div class="content-data pl-2 pt-3">
-        <p><span class="data-title">Series:</span>進撃の巨人</p>
-        <p><span class="data-title">Genre:</span>漫画</p>
-        <p><span class="data-title">Status:</span><span class="content-completed">完了</span></p>
-        <p><span class="data-title">Date Started:</span>2020/12/29</p>
-        <p><span class="data-title">Date Completed:</span>2020/12/29</p>
-      </div>
-    </div>
-  </article>
+    </article>
+  {% endfor %}
 {% endblock content %}
