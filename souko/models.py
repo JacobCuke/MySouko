@@ -20,7 +20,7 @@ class Item(models.Model):
     genre = models.CharField(max_length=2, choices=GENRE_CHOICES)
     completed = models.BooleanField(default=False)
     date_started = models.DateField(default=date.today)
-    date_completed = models.DateField(default=date.today)
+    date_completed = models.DateField(default='', blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -28,9 +28,9 @@ class Item(models.Model):
     def save(self):
         super().save()
 
-        img = Image.open(self.image.path)
+        img = Image.open(self.cover_art.path)
 
         if img.width > 300 or img.height > 500:
             output_size = (300, 500)
             img.thumbnail(output_size)
-            img.save(self.image.path)
+            img.save(self.cover_art.path)
