@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Item
 
 items = [
     {
@@ -32,6 +33,6 @@ items = [
 
 def home(request):
     context = {
-        'items': items
+        'items': Item.objects.all()
     }
     return render(request, 'souko/home.html', context)
