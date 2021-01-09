@@ -18,10 +18,3 @@ class HomeListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, id=1)
         return Item.objects.filter(user=user).order_by('-date_started')
-
-
-def home(request):
-    context = {
-        'items': Item.objects.all()
-    }
-    return render(request, 'souko/home.html', context)
