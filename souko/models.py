@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from datetime import date
 from PIL import Image
 
@@ -21,6 +22,7 @@ class Item(models.Model):
     completed = models.BooleanField(default=False)
     date_started = models.DateField(default=date.today)
     date_completed = models.DateField(default='', blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
