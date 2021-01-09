@@ -1,0 +1,54 @@
+{% extends "souko/base.html" %}
+
+{% block content %}
+  {% block heading %}{% endblock heading %}
+  <div class="row">
+    <div class="col-md-9">
+      {% for item in items %}
+      <article class="media content-section">
+        <img class="cover-art" src="{{ item.cover_art.url }}" alt="cover_art">
+        <div class="media-body">
+          <div class="content-title">
+            <h2 class="pl-2">{{ item.title }}</h2>
+          </div>
+          <div class="content-data pl-2 pt-3">
+            <p><span class="data-title">Series:</span>{{ item.series }}</p>
+            <p><span class="data-title">Genre:</span>{{ item.get_genre_display }}</p>
+            {% if item.completed %}
+              <p><span class="data-title">Status:</span><span class="content-completed">完了</span></p>
+            {% else %}
+              <p><span class="data-title">Status:</span><span class="content-inprogress">未完</span></p>
+            {% endif %}
+            <p><span class="data-title">Date Started:</span>{{ item.date_started|date:"Y/m/d" }}</p>
+            <p><span class="data-title">Date Completed:</span>{{ item.date_completed|date:"Y/m/d" }}</p>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+
+    {% if is_paginated %}
+
+      <div class="page_selector">
+        {% if page_obj.has_previous %}
+          <a class="btn btn-outline-orange" href="?page=1">&#x21E4</a>
+          <a class="btn btn-outline-orange" href="?page={{ page_obj.previous_page_number }}">&#x2190</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <a class="btn btn-orange" href="?page={{ num }}">{{ num }}</a>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a class="btn btn-outline-orange" href="?page={{ num }}">{{ num }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <a class="btn btn-outline-orange" href="?page={{ page_obj.next_page_number }}">&#x2192</a>
+          <a class="btn btn-outline-orange" href="?page={{ page_obj.paginator.num_pages }}">&#x21E5</a>
+        {% endif %}
+      </div>
+
+    {% endif %}
+    </div>
+  </div>
+{% endblock content %}
