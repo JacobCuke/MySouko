@@ -22,4 +22,28 @@
       </div>
     </article>
   {% endfor %}
+
+  {% if is_paginated %}
+
+    <div class="page_selector">
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-orange" href="?page=1">&#x21E4</a>
+        <a class="btn btn-outline-orange" href="?page={{ page_obj.previous_page_number }}">&#x2190</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-orange" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-orange" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-orange" href="?page={{ page_obj.next_page_number }}">&#x2192</a>
+        <a class="btn btn-outline-orange" href="?page={{ page_obj.paginator.num_pages }}">&#x21E5</a>
+      {% endif %}
+    </div>
+
+  {% endif %}
 {% endblock content %}
