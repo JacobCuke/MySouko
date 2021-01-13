@@ -1,0 +1,9 @@
+{% extends "souko/item_list.html" %}
+
+{% block heading %}
+  {% if page_obj.number == 1 %}
+    <div class="mb-4">
+      <h1>{{ view.kwargs.username }}'s List ({{ page_obj.paginator.count }} items)</h1>
+    </div>
+  {% endif %}
+{% endblock heading %}

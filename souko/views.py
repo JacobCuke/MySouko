@@ -18,3 +18,14 @@ class HomeListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, id=1)
         return Item.objects.filter(user=user).order_by('-date_started')
+
+
+class UserListView(ListView):
+    model = Item
+    template_name = 'souko/user_list.html'
+    context_object_name = 'items'
+    paginate_by = 10
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Item.objects.filter(user=user).order_by('-date_started')
