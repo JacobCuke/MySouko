@@ -18,7 +18,13 @@
           <p><span class="data-title">Status:</span><span class="content-inprogress">未完</span></p>
         {% endif %}
         <p><span class="data-title">Date Started:</span>{{ item.date_started|date:"Y/m/d" }}</p>
-        <p><span class="data-title">Date Completed:</span>{{ item.date_completed|date:"Y/m/d" }}</p>
+        <p>
+          <span class="data-title">Date Completed:</span>{{ item.date_completed|date:"Y/m/d" }}
+          {% if user == item.user %}
+            <button class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
+            <button class="btn btn-info"><i class="fas fa-pencil-alt mr-2"></i>Edit</button>
+          {% endif %}
+        </p>
       </div>
     </div>
   </article>

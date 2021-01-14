@@ -39,6 +39,20 @@ body {
   border-bottom: 2px solid #cfcfcf;
 }
 
+.content-title h2 {
+  display: inline-block;
+}
+
+.content-section button {
+  visibility: hidden;
+  margin: 3px;
+  float: right;
+}
+
+.content-section:hover button {
+  visibility: visible;
+}
+
 .data-title {
   font-weight: 500;
   margin-right: 10px;
