@@ -72,6 +72,11 @@ body {
   margin-left: 2px;
 }
 
+.content-completed:hover {
+  background-color: #019901;
+  cursor: pointer;
+}
+
 .content-inprogress {
   background-color: #ff391f;
   color: #ececec;
@@ -84,6 +89,11 @@ body {
   color: #ececec;
   content: "\2718";
   margin-left: 5px;
+}
+
+.content-inprogress:hover {
+  background-color: #dd1a00;
+  cursor: pointer;
 }
 
 .page_selector {
