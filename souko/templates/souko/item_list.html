@@ -10,16 +10,37 @@
         <h2 class="pl-2">{{ item.title }}</h2>
       </div>
       <div class="content-data pl-2 pt-3">
-        <p><span class="data-title">Series:</span>{{ item.series }}</p>
-        <p><span class="data-title">Genre:</span>{{ item.get_genre_display }}</p>
-        {% if item.completed %}
-          <p><span class="data-title">Status:</span><span class="status content-completed" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">完了</span></p>
-        {% else %}
-          <p><span class="data-title">Status:</span><span class="status content-inprogress" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">未完</span></p>
-        {% endif %}
-        <p><span class="data-title">Date Started:</span>{{ item.date_started|date:"Y/m/d" }}</p>
         <p>
-          <span class="data-title">Date Completed:</span>{{ item.date_completed|date:"Y/m/d" }}
+          <span class="data-title">Series:</span>
+          {{ item.series }}
+        </p>
+        <p>
+          <span class="data-title">Genre:</span>
+          {{ item.get_genre_display }}
+        </p>
+        <p>
+          <span class="data-title">Status:</span>
+          {% if item.completed %}
+            {% if user == item.user %}
+              <span class="status-toggle content-completed" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">完了</span>
+            {% else %}
+              <span class="content-completed">完了</span>
+            {% endif %}
+          {% else %}
+            {% if user == item.user %}
+              <span class="status-toggle content-inprogress" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">未完</span>
+            {% else %}
+              <span class="content-inprogress">未完</span>
+            {% endif %}
+          {% endif %}
+        </p>
+        <p>
+          <span class="data-title">Date Started:</span>
+          {{ item.date_started|date:"Y/m/d" }}
+        </p>
+        <p>
+          <span class="data-title">Date Completed:</span>
+          {{ item.date_completed|date:"Y/m/d" }}
           {% if user == item.user %}
             <button class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
             <button class="btn btn-info"><i class="fas fa-pencil-alt mr-2"></i>Edit</button>

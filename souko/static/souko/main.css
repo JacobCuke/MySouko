@@ -55,7 +55,7 @@ body {
 
 .data-title {
   font-weight: 500;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .content-completed {
@@ -72,7 +72,7 @@ body {
   margin-left: 2px;
 }
 
-.content-completed:hover {
+.status-toggle.content-completed:hover {
   background-color: #019901;
   cursor: pointer;
 }
@@ -91,7 +91,7 @@ body {
   margin-left: 5px;
 }
 
-.content-inprogress:hover {
+.status-toggle.content-inprogress:hover {
   background-color: #dd1a00;
   cursor: pointer;
 }

@@ -33,10 +33,14 @@ class UserListView(ListView):
 
 
 def completed(request, **kwargs):
-    pk = kwargs.get('pk')
-    print(pk)
-    obj = Item.objects.get(pk=pk)
-    obj.completed = not obj.completed
-    obj.save()
-    response_data = {'success':1}
-    return HttpResponse(request.user.username)
+    if (request.user.is_authenticated):
+        pk = kwargs.get('pk')
+        print(pk)
+        obj = Item.objects.get(pk=pk)
+        owner = obj.user
+        if (owner == request.user):
+            obj.completed = not obj.completed
+            obj.save()
+            response_data = {'success':1}
+            return HttpResponse(request.user.username)
+    return HttpResponse("Access Denied")
