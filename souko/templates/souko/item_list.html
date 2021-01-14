@@ -13,9 +13,9 @@
         <p><span class="data-title">Series:</span>{{ item.series }}</p>
         <p><span class="data-title">Genre:</span>{{ item.get_genre_display }}</p>
         {% if item.completed %}
-          <p><span class="data-title">Status:</span><span class="content-completed" onclick="toggleCompleted(this)">完了</span></p>
+          <p><span class="data-title">Status:</span><span class="status content-completed" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">完了</span></p>
         {% else %}
-          <p><span class="data-title">Status:</span><span class="content-inprogress" onclick="toggleCompleted(this)">未完</span></p>
+          <p><span class="data-title">Status:</span><span class="status content-inprogress" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">未完</span></p>
         {% endif %}
         <p><span class="data-title">Date Started:</span>{{ item.date_started|date:"Y/m/d" }}</p>
         <p>

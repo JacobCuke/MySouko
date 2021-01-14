@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Item
+from django.http import HttpResponse
 from django.views.generic import (
     ListView,
     DetailView,
@@ -29,3 +30,13 @@ class UserListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Item.objects.filter(user=user).order_by('-date_started')
+
+
+def completed(request, **kwargs):
+    pk = kwargs.get('pk')
+    print(pk)
+    obj = Item.objects.get(pk=pk)
+    obj.completed = not obj.completed
+    obj.save()
+    response_data = {'success':1}
+    return HttpResponse(request.user.username)

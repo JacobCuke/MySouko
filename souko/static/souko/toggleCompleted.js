@@ -9,3 +9,8 @@ function toggleCompleted(element) {
         element.textContent = "未完";
     }
 }
+
+$('.status').click(function(){
+    var pk = $(this).attr("data-pk");
+    $.get('/toggle_completed/'+ pk, function(r) {console.log(r);})
+});
