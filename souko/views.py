@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Item
+from datetime import date
 from django.http import HttpResponse
 from django.views.generic import (
     ListView,
@@ -40,7 +41,12 @@ def completed(request, **kwargs):
         owner = obj.user
         if (owner == request.user):
             obj.completed = not obj.completed
-            obj.save()
-            response_data = {'success':1}
-            return HttpResponse(request.user.username)
+            if (obj.completed):
+                obj.date_completed = date.today()
+                obj.save()
+                return HttpResponse(obj.date_completed.strftime("%Y/%m/%d"))
+            else:
+                obj.date_completed = None
+                obj.save()
+                return HttpResponse("")
     return HttpResponse("Access Denied")

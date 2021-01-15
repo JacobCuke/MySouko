@@ -12,5 +12,7 @@ function toggleCompleted(element) {
 
 $('.status-toggle').click(function(){
     var pk = $(this).attr("data-pk");
-    $.get('/toggle_completed/'+ pk, function(r) {console.log(r);})
+    $.ajax({url: '/toggle_completed/'+ pk, success: function(result){
+        $('#date_completed'+pk).html(result)
+    }});
 });

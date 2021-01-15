@@ -36,11 +36,11 @@
         </p>
         <p>
           <span class="data-title">Date Started:</span>
-          {{ item.date_started|date:"Y/m/d" }}
+          <span>{{ item.date_started|date:"Y/m/d" }}</span>
         </p>
         <p>
           <span class="data-title">Date Completed:</span>
-          {{ item.date_completed|date:"Y/m/d" }}
+          <span id="date_completed{{ item.pk }}">{{ item.date_completed|date:"Y/m/d" }}</span>
           {% if user == item.user %}
             <button class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
             <button class="btn btn-info"><i class="fas fa-pencil-alt mr-2"></i>Edit</button>
