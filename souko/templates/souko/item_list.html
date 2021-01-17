@@ -42,8 +42,8 @@
           <span class="data-title">Date Completed:</span>
           <span id="date_completed{{ item.pk }}">{{ item.date_completed|date:"Y/m/d" }}</span>
           {% if user == item.user %}
-            <button class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
-            <button class="btn btn-info"><i class="fas fa-pencil-alt mr-2"></i>Edit</button>
+            <button class="btn btn-danger content-button"><i class="fas fa-trash-alt mr-2"></i>Delete</button>
+            <button class="btn btn-info content-button"><i class="fas fa-pencil-alt mr-2"></i>Edit</button>
           {% endif %}
         </p>
       </div>

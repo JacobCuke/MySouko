@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import Item
 from datetime import date
 from django.http import HttpResponse
+from django.forms.widgets import SelectDateWidget, DateInput
 from django.views.generic import (
     ListView,
     DetailView,
@@ -31,6 +32,20 @@ class UserListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Item.objects.filter(user=user).order_by('-date_started')
+
+
+class ItemCreateView(CreateView):
+    model = Item
+    fields = ['cover_art', 'title', 'series', 'genre', 'completed', 'date_started', 'date_completed']
+
+    def get_form(self):
+        form = super(ItemCreateView, self).get_form()
+        form.fields['date_started'].widget = DateInput()
+        return form
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 def completed(request, **kwargs):

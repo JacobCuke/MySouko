@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from datetime import date
 from PIL import Image
 
@@ -36,3 +37,6 @@ class Item(models.Model):
             output_size = (300, 500)
             img.thumbnail(output_size)
             img.save(self.cover_art.path)
+
+    def get_absolute_url(self):
+        return reverse('souko-mylist', kwargs={'username': self.user.username})

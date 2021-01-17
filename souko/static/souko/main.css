@@ -41,16 +41,21 @@ body {
 
 .content-title h2 {
   display: inline-block;
+  font-size: 1.8rem;
 }
 
-.content-section button {
+button.content-button {
   visibility: hidden;
   margin: 3px;
   float: right;
 }
 
-.content-section:hover button {
+.content-section:hover button.content-button {
   visibility: visible;
+}
+
+.add-item {
+  text-align: right;
 }
 
 .data-title {
