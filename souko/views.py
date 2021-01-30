@@ -4,7 +4,6 @@ from .models import Item
 from datetime import date
 from django.http import HttpResponse
 from django import forms
-from .forms import DateForm
 from django.views.generic import (
     ListView,
     DetailView,
