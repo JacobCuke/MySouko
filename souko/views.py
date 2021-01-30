@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from .models import Item
 from datetime import date
 from django.http import HttpResponse
-from django.forms.widgets import SelectDateWidget, DateInput
+from django import forms
+from .forms import DateForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -40,7 +41,15 @@ class ItemCreateView(CreateView):
 
     def get_form(self):
         form = super(ItemCreateView, self).get_form()
-        form.fields['date_started'].widget = DateInput()
+        form.fields['date_started'] = forms.DateField(
+                                        widget=forms.TextInput(attrs={'autocomplete':'off', 'class': 'date-picker'}),
+                                        input_formats=['%Y/%m/%d']
+                                    )
+        form.fields['date_completed'] = forms.DateField(
+                                        widget=forms.TextInput(attrs={'autocomplete':'off', 'class': 'date-picker'}),
+                                        input_formats=['%Y/%m/%d'],
+                                        required=False
+                                    )
         return form
 
     def form_valid(self, form):

@@ -13,5 +13,12 @@
         <button class="btn btn-outline-orange" type="submit">Confirm</button>
       </div>
     </form>
+    <script>
+      $(function () {
+        $(".date-picker").datepicker({
+          format:'dd/mm/yyyy',
+        });
+      });
+    </script>
   </div>
 {% endblock content %}
