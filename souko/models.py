@@ -39,4 +39,4 @@ class Item(models.Model):
             img.save(self.cover_art.path)
 
     def get_absolute_url(self):
-        return reverse('souko-mylist', kwargs={'username': self.user.username})
+        return reverse('user-mylist', kwargs={'username': self.user.username})

@@ -6,7 +6,7 @@
   </div>
   {% if user.username == view.kwargs.username %}
     <div class="add-item mb-4">
-      <a href="{% url 'souko-create' %}" class="btn btn-primary mr-2"><i class="fas fa-plus mr-2"></i>Add Item</a>
+      <a href="{% url 'item-create' %}" class="btn btn-primary mr-2"><i class="fas fa-plus mr-2"></i>Add Item</a>
     </div>
   {% endif %}
 {% endblock heading %}

@@ -40,7 +40,7 @@
             <a class="nav-item nav-link" href="#">About</a>
             <a class="nav-item nav-link" href="#">Statistics</a>
             {% if user.is_authenticated %}
-              <a class="nav-item nav-link" href="{% url 'souko-mylist' user.username %}">My List</a>
+              <a class="nav-item nav-link" href="{% url 'user-mylist' user.username %}">My List</a>
             {% endif %}
           </div>
 

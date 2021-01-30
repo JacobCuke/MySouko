@@ -1,13 +1,15 @@
 from django import forms
 from .models import Item
 
-class ItemCreateForm(forms.ModelForm):
+class ItemForm(forms.ModelForm):
     date_started = forms.DateField(
-                                    widget=forms.TextInput(attrs={'autocomplete':'off', 'class': 'date-picker'}),
+                                    widget=forms.DateInput(attrs={'autocomplete':'off', 'class': 'date-picker'}, 
+                                    format='%Y/%m/%d'),
                                     input_formats=['%Y/%m/%d']
                                 )
     date_completed = forms.DateField(
-                                        widget=forms.TextInput(attrs={'autocomplete':'off', 'class': 'date-picker'}),
+                                        widget=forms.DateInput(attrs={'autocomplete':'off', 'class': 'date-picker'}, 
+                                        format='%Y/%m/%d'),
                                         input_formats=['%Y/%m/%d'],
                                         required=False
                                     )

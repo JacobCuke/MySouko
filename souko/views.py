@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import Item
 from datetime import date
 from django.http import HttpResponse
-from .forms import ItemCreateForm
+from .forms import ItemForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -35,7 +35,17 @@ class UserListView(ListView):
 
 
 class ItemCreateView(CreateView):
-    form_class = ItemCreateForm
+    form_class = ItemForm
+    template_name = 'souko/item_form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class ItemUpdateView(UpdateView):
+    model = Item
+    form_class = ItemForm
     template_name = 'souko/item_form.html'
 
     def form_valid(self, form):
