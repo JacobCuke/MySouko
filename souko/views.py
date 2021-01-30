@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import Item
 from datetime import date
 from django.http import HttpResponse
-from django import forms
+from .forms import ItemCreateForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -35,21 +35,8 @@ class UserListView(ListView):
 
 
 class ItemCreateView(CreateView):
-    model = Item
-    fields = ['cover_art', 'title', 'series', 'genre', 'completed', 'date_started', 'date_completed']
-
-    def get_form(self):
-        form = super(ItemCreateView, self).get_form()
-        form.fields['date_started'] = forms.DateField(
-                                        widget=forms.TextInput(attrs={'autocomplete':'off', 'class': 'date-picker'}),
-                                        input_formats=['%Y/%m/%d']
-                                    )
-        form.fields['date_completed'] = forms.DateField(
-                                        widget=forms.TextInput(attrs={'autocomplete':'off', 'class': 'date-picker'}),
-                                        input_formats=['%Y/%m/%d'],
-                                        required=False
-                                    )
-        return form
+    form_class = ItemCreateForm
+    template_name = 'souko/item_form.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
