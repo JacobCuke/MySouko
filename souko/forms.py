@@ -17,9 +17,14 @@ class ItemForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         completed = cleaned_data.get('completed')
+        date_started = cleaned_data.get('date_started')
         date_completed = cleaned_data.get('date_completed')
         if completed and not date_completed:
             raise forms.ValidationError("Please enter completion date for completed items")
+        if not completed and date_completed:
+            raise forms.ValidationError("Cannot have completion date for uncompleted item")
+        if (date_completed < date_started):
+            raise forms.ValidationError("Start date cannot be after completion date")
         return cleaned_data
 
     class Meta:
