@@ -129,5 +129,5 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'souko-home'
+LOGIN_REDIRECT_URL = 'souko-mylist'
 LOGIN_URL = 'login'

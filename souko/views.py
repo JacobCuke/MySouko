@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from .models import Item
 from datetime import date
@@ -51,6 +51,13 @@ class ItemUpdateView(UpdateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+def mylist(request):
+    if (request.user.is_authenticated):
+        return redirect('user-mylist', username=request.user.username)
+    else:
+        return redirect('login')
 
 
 def completed(request, **kwargs):
