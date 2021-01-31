@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Item
+from .forms import ItemForm
 from datetime import date
 from django.http import HttpResponse
-from .forms import ItemForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -34,7 +35,7 @@ class UserListView(ListView):
         return Item.objects.filter(user=user).order_by('-date_started')
 
 
-class ItemCreateView(CreateView):
+class ItemCreateView(LoginRequiredMixin, CreateView):
     form_class = ItemForm
     template_name = 'souko/item_form.html'
 
@@ -43,7 +44,7 @@ class ItemCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ItemUpdateView(UpdateView):
+class ItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Item
     form_class = ItemForm
     template_name = 'souko/item_form.html'
@@ -51,6 +52,12 @@ class ItemUpdateView(UpdateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        item = self.get_object()
+        if self.request.user == item.user:
+            return True
+        return False
 
 
 def mylist(request):
