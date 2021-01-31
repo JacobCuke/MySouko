@@ -60,6 +60,21 @@ class ItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
+class ItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Item
+    success_url = '/mylist/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        item = self.get_object()
+        if self.request.user == item.user:
+            return True
+        return False
+
+
 def mylist(request):
     if (request.user.is_authenticated):
         return redirect('user-mylist', username=request.user.username)

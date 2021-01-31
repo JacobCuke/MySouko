@@ -42,7 +42,7 @@
           <span class="data-title">Date Completed:</span>
           <span id="date_completed{{ item.pk }}">{{ item.date_completed|date:"Y/m/d" }}</span>
           {% if user == item.user %}
-            <a href="#" class="btn btn-danger content-button"><i class="fas fa-trash-alt mr-2"></i>Delete</a>
+            <a href="{% url 'item-delete' item.pk %}" class="btn btn-danger content-button"><i class="fas fa-trash-alt mr-2"></i>Delete</a>
             <a href="{% url 'item-update' item.pk %}" class="btn btn-info content-button"><i class="fas fa-pencil-alt mr-2"></i>Edit</a>
           {% endif %}
         </p>
