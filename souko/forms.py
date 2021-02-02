@@ -23,7 +23,7 @@ class ItemForm(forms.ModelForm):
             raise forms.ValidationError("Please enter completion date for completed items")
         if not completed and date_completed:
             raise forms.ValidationError("Cannot have completion date for uncompleted item")
-        if (date_completed < date_started):
+        if date_completed and (date_completed < date_started):
             raise forms.ValidationError("Start date cannot be after completion date")
         return cleaned_data
 
