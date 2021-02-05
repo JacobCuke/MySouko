@@ -32,7 +32,7 @@ class UserListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Item.objects.filter(user=user).order_by('-date_started')
+        return Item.objects.filter(user=user).order_by('-date_started', '-pk')
 
 
 class ItemCreateView(LoginRequiredMixin, CreateView):
