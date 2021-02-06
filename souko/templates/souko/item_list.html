@@ -4,14 +4,8 @@
   <div class="user-list-title mb-4">
     <h1>{{ view.kwargs.username }}'s List ({{ page_obj.paginator.count }} items)</h1>
   </div>
-  <div class="mb-4">
-    {% block list_submenu %}{% endblock list_submenu %}
-    {% if user.username == view.kwargs.username %}
-      <a href="{% url 'item-create' %}" class="btn btn-primary add-item"><i class="fas fa-plus mr-2"></i>Add Item</a>
-    {% endif %}
-  </div>
 
-  {% if is_paginated %}
+  {% if page_obj.paginator.count > 0 %}
     <div class="top-page-selector-container">
       <div class="top-page-selector mb-4">
         {% if page_obj.has_previous %}
@@ -34,6 +28,13 @@
       </div>
     </div>
   {% endif %}
+
+  <div class="mb-4">
+    {% block list_submenu %}{% endblock list_submenu %}
+    {% if user.username == view.kwargs.username %}
+      <a href="{% url 'item-create' %}" class="btn btn-primary add-item"><i class="fas fa-plus mr-2"></i>Add Item</a>
+    {% endif %}
+  </div>
 
   {% for item in items %}
   <article class="media content-section">
@@ -84,7 +85,7 @@
   </article>
 {% endfor %}
 
-{% if is_paginated %}
+{% if page_obj.paginator.count > 0 %}
   <div class="bottom-page-selector">
     {% if page_obj.has_previous %}
       <a class="btn btn-outline-orange" href="?page=1">&#x21E4</a>
