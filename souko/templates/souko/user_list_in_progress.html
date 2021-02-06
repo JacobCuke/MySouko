@@ -1,0 +1,7 @@
+{% extends "souko/item_list.html" %}
+
+{% block list_submenu %}
+  <a href="{% url 'user-mylist' view.kwargs.username %}" class="btn btn-outline-info">All Items</a>
+  <a href="{% url 'user-mylist-inprogress' view.kwargs.username %}" class="btn btn-danger">In Progress</a>
+  <a href="{% url 'user-mylist-completed' view.kwargs.username %}" class="btn btn-outline-success">Completed</a>
+{% endblock list_submenu %}

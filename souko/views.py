@@ -26,13 +26,35 @@ class HomeListView(ListView):
 
 class UserListView(ListView):
     model = Item
-    template_name = 'souko/user_list.html'
+    template_name = 'souko/user_list_all.html'
     context_object_name = 'items'
     paginate_by = 10
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Item.objects.filter(user=user).order_by('-date_started', '-pk')
+
+
+class UserListInProgressView(ListView):
+    model = Item
+    template_name = 'souko/user_list_in_progress.html'
+    context_object_name = 'items'
+    paginate_by = 10
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Item.objects.filter(user=user, completed=False).order_by('-date_started', '-pk')
+
+
+class UserListCompletedView(ListView):
+    model = Item
+    template_name = 'souko/user_list_completed.html'
+    context_object_name = 'items'
+    paginate_by = 10
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Item.objects.filter(user=user, completed=True).order_by('-date_completed', '-pk')
 
 
 class ItemCreateView(LoginRequiredMixin, CreateView):

@@ -1,7 +1,15 @@
 {% extends "souko/base.html" %}
 
 {% block content %}
-  {% block heading %}{% endblock heading %}
+    <div class="user-list-title mb-4">
+      <h1>{{ view.kwargs.username }}'s List ({{ page_obj.paginator.count }} items)</h1>
+    </div>
+    <div class="mb-4">
+      {% block list_submenu %}{% endblock list_submenu %}
+      {% if user.username == view.kwargs.username %}
+        <a href="{% url 'item-create' %}" class="btn btn-primary add-item"><i class="fas fa-plus mr-2"></i>Add Item</a>
+      {% endif %}
+    </div>
   {% for item in items %}
   <article class="media content-section">
     <img class="cover-art" src="{{ item.cover_art.url }}" alt="cover_art">
