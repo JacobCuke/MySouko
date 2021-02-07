@@ -27,7 +27,7 @@
     </div>
   {% endif %}
 
-  <div class="mb-4">
+  <div class="mb-3 mt-2">
     {% block list_submenu %}{% endblock list_submenu %}
     {% if user.username == view.kwargs.username %}
       <a href="{% url 'item-create' %}" class="btn btn-primary add-item"><i class="fas fa-plus mr-2"></i>Add Item</a>
@@ -35,34 +35,34 @@
   </div>
 
   {% for item in items %}
-  <article class="media content-section">
-    <img class="cover-art" src="{{ item.cover_art.url }}" alt="cover_art">
-    <div class="media-body">
-      <div class="content-title">
-        <h2 class="pl-2">{{ item.title }}</h2>
+  <article class="content-section">
+    <div class="row">
+      <div class="col-lg-4 col-md-12">
+        <img class="cover-art" src="{{ item.cover_art.url }}" alt="cover_art">
       </div>
-      <div class="content-data pl-2 pt-3">
+      <div class="col-lg-8 col-md-12 content-data pl-2 pt-3">
+        <h2 class="content-title mb-3">{{ item.title }}</h2>
         <p>
           <span class="data-title">Series:</span>
-          {{ item.series }}
+          <span class="data-content">{{ item.series }}</span>
         </p>
         <p>
           <span class="data-title">Genre:</span>
-          {{ item.get_genre_display }}
+          <span class="data-content">{{ item.get_genre_display }}</span>
         </p>
         <p>
           <span class="data-title">Status:</span>
           {% if item.completed %}
             {% if user == item.user %}
-              <span class="status-toggle content-completed" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">Completed</span>
+              <span class="status-toggle content-completed data-content" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">Completed</span>
             {% else %}
-              <span class="content-completed">Completed</span>
+              <span class="content-completed data-content">Completed</span>
             {% endif %}
           {% else %}
             {% if user == item.user %}
-              <span class="status-toggle content-inprogress" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">In Progress</span>
+              <span class="status-toggle content-inprogress data-content" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">In Progress</span>
             {% else %}
-              <span class="content-inprogress">In Progress</span>
+              <span class="content-inprogress data-content">In Progress</span>
             {% endif %}
           {% endif %}
         </p>

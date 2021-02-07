@@ -28,20 +28,24 @@ body {
   margin-bottom: 35px;
 }
 
+.add-item {
+  float: right;
+}
+
 .cover-art {
-  margin-right: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 5px;
   width: 180px;
   object-fit: contain;
 }
 
 .content-title {
-  margin-top: 10px;
   border-bottom: 2px solid #cfcfcf;
-}
-
-.content-title h2 {
-  display: inline-block;
-  font-size: 1.8rem;
+  padding-bottom: 7px;
+  width: 95%;
 }
 
 .content-button {
@@ -54,13 +58,13 @@ body {
   visibility: visible;
 }
 
-.add-item {
-  float: right;
-}
-
 .data-title {
   font-weight: 500;
   margin-right: 5px;
+}
+
+.data-content {
+  display: inline-block;
 }
 
 .content-completed,
