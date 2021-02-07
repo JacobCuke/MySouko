@@ -56,15 +56,15 @@
           <span class="data-title">Status:</span>
           {% if item.completed %}
             {% if user == item.user %}
-              <span class="status-toggle content-completed" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">完了</span>
+              <span class="status-toggle content-completed" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">Completed</span>
             {% else %}
-              <span class="content-completed">完了</span>
+              <span class="content-completed">Completed</span>
             {% endif %}
           {% else %}
             {% if user == item.user %}
-              <span class="status-toggle content-inprogress" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">未完</span>
+              <span class="status-toggle content-inprogress" onclick="toggleCompleted(this)" data-pk="{{ item.pk }}">In Progress</span>
             {% else %}
-              <span class="content-inprogress">未完</span>
+              <span class="content-inprogress">In Progress</span>
             {% endif %}
           {% endif %}
         </p>

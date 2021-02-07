@@ -9,11 +9,19 @@ class Item(models.Model):
     MANGA = 'MA'
     LIGHT_NOVEL = 'LN'
     GAME = 'GM'
+    MOVIE = 'MV'
+    NOVEL = 'NV'
+    DRAMA = 'DR'
+    TV_SHOW = 'TV'
     GENRE_CHOICES = [
-        (ANIME, 'アニメ'),
-        (MANGA, '漫画'),
-        (LIGHT_NOVEL, 'ライトノベル'),
-        (GAME, 'ゲーム'),
+        (ANIME, 'Anime'),
+        (MANGA, 'Manga'),
+        (LIGHT_NOVEL, 'Light Novel'),
+        (GAME, 'Game'),
+        (MOVIE, 'Movie'),
+        (NOVEL, 'Novel'),
+        (DRAMA, 'Drama'),
+        (TV_SHOW, 'TV Series')
     ]
 
     title = models.CharField(max_length=100)
