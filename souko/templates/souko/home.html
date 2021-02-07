@@ -3,7 +3,10 @@
 {% block heading %}
   {% if page_obj.number == 1 %}
     <div class="mb-4">
-      <h1>Welcome!</h1>
+      <h1>Welcome! Below is my list</h1>
     </div>
   {% endif %}
+  <div class="user-list-title mb-4">
+    <h1>JacobCuke's List ({{ page_obj.paginator.count }} items)</h1>
+  </div>
 {% endblock heading %}

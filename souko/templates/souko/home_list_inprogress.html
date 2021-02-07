@@ -1,0 +1,7 @@
+{% extends "souko/home.html" %}
+
+{% block list_submenu %}
+  <a href="{% url 'souko-home' %}" class="btn btn-outline-info">All Items</a>
+  <a href="{% url 'souko-home-inprogress' %}" class="btn btn-danger">In Progress</a>
+  <a href="{% url 'souko-home-completed' %}" class="btn btn-outline-success">Completed</a>
+{% endblock list_submenu %}

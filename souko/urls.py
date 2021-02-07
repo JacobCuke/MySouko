@@ -1,7 +1,9 @@
 from django.urls import path
 from . import views
 from .views import (
-    HomeListView, 
+    HomeListView,
+    HomeListInProgressView,
+    HomeListCompletedView, 
     UserListView,
     UserListInProgressView,
     UserListCompletedView,
@@ -12,6 +14,8 @@ from .views import (
 
 urlpatterns = [
     path('', HomeListView.as_view(), name='souko-home'),
+    path('home/inprogress/', HomeListInProgressView.as_view(), name='souko-home-inprogress'),
+    path('home/completed/', HomeListCompletedView.as_view(), name='souko-home-completed'),
     path('mylist/', views.mylist, name='souko-mylist'),
     path('mylist/<str:username>/', UserListView.as_view(), name='user-mylist'),
     path('mylist/<str:username>/inprogress/', UserListInProgressView.as_view(), name='user-mylist-inprogress'),
