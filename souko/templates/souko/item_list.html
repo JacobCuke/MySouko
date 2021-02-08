@@ -4,30 +4,30 @@
   {% block heading %}{% endblock heading %}
 
   {% if page_obj.paginator.count > 0 %}
-    <div class="top-page-selector-container">
-      <div class="top-page-selector mb-4">
+    <div class="page-selector">
+      <ul>
         {% if page_obj.has_previous %}
-          <a class="btn btn-outline-orange" href="?page=1">&#x21E4</a>
-          <a class="btn btn-outline-orange" href="?page={{ page_obj.previous_page_number }}">&#x2190</a>
+          <li class="page-button"><a href="?page=1">&#x21E4</a></li>
+          <li class="page-button"><a href="?page={{ page_obj.previous_page_number }}">&#x2190</a></li>
         {% endif %}
 
         {% for num in page_obj.paginator.page_range %}
           {% if page_obj.number == num %}
-            <a class="btn btn-orange" href="?page={{ num }}">{{ num }}</a>
+            <li class="page-button current-page"><a href="?page={{ num }}">{{ num }}</a></li>
           {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-            <a class="btn btn-outline-orange" href="?page={{ num }}">{{ num }}</a>
+            <li class="page-button"><a href="?page={{ num }}">{{ num }}</a></li>
           {% endif %}
         {% endfor %}
 
         {% if page_obj.has_next %}
-          <a class="btn btn-outline-orange" href="?page={{ page_obj.next_page_number }}">&#x2192</a>
-          <a class="btn btn-outline-orange" href="?page={{ page_obj.paginator.num_pages }}">&#x21E5</a>
+          <li class="page-button"><a href="?page={{ page_obj.next_page_number }}">&#x2192</a></li>
+          <li class="page-button"><a href="?page={{ page_obj.paginator.num_pages }}">&#x21E5</a></li>
         {% endif %}
-      </div>
+      </ul>
     </div>
   {% endif %}
 
-  <div class="mb-3 mt-2">
+  <div class="mb-3">
     {% block list_submenu %}{% endblock list_submenu %}
     {% if user.username == view.kwargs.username %}
       <a href="{% url 'item-create' %}" class="btn btn-primary add-item"><i class="fas fa-plus mr-2"></i>Add Item</a>
@@ -73,6 +73,8 @@
         <p>
           <span class="data-title">Date Completed:</span>
           <span id="date_completed{{ item.pk }}">{{ item.date_completed|date:"Y/m/d" }}</span>
+        </p>
+        <p>
           {% if user == item.user %}
             <a href="{% url 'item-delete' item.pk %}" class="btn btn-danger content-button"><i class="fas fa-trash-alt mr-2"></i>Delete</a>
             <a href="{% url 'item-update' item.pk %}" class="btn btn-info content-button"><i class="fas fa-pencil-alt mr-2"></i>Edit</a>
@@ -84,24 +86,26 @@
   {% endfor %}
 
   {% if page_obj.paginator.count > 0 %}
-    <div class="bottom-page-selector">
-      {% if page_obj.has_previous %}
-        <a class="btn btn-outline-orange" href="?page=1">&#x21E4</a>
-        <a class="btn btn-outline-orange" href="?page={{ page_obj.previous_page_number }}">&#x2190</a>
-      {% endif %}
-
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn btn-orange" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-outline-orange" href="?page={{ num }}">{{ num }}</a>
+    <div class="page-selector">
+      <ul>
+        {% if page_obj.has_previous %}
+          <li class="page-button"><a href="?page=1">&#x21E4</a></li>
+          <li class="page-button"><a href="?page={{ page_obj.previous_page_number }}">&#x2190</a></li>
         {% endif %}
-      {% endfor %}
 
-      {% if page_obj.has_next %}
-        <a class="btn btn-outline-orange" href="?page={{ page_obj.next_page_number }}">&#x2192</a>
-        <a class="btn btn-outline-orange" href="?page={{ page_obj.paginator.num_pages }}">&#x21E5</a>
-      {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li class="page-button current-page"><a href="?page={{ num }}">{{ num }}</a></li>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-button"><a href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-button"><a href="?page={{ page_obj.next_page_number }}">&#x2192</a></li>
+          <li class="page-button"><a href="?page={{ page_obj.paginator.num_pages }}">&#x21E5</a></li>
+        {% endif %}
+      </ul>
     </div>
   {% endif %}
 
