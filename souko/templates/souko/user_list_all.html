@@ -1,5 +1,9 @@
 {% extends "souko/user_list.html" %}
 
+{% block title %}
+- {{view.kwargs.username}}'s List
+{% endblock title %}
+
 {% block list_submenu %}
   <a href="{% url 'user-mylist' view.kwargs.username %}" class="btn btn-info">All Items</a>
   <a href="{% url 'user-mylist-inprogress' view.kwargs.username %}" class="btn btn-outline-danger">In Progress</a>
