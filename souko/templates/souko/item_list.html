@@ -34,9 +34,14 @@
     {% endif %}
     {% if page_obj.paginator.count <= 0 %}
       <div class="mt-4 ml-2">
-        <p class="lead">It doesn't look like there's anything here yet!</p>
+        <p class="lead">
+          It doesn't look like there's anything here yet.
+          {% if user.username == view.kwargs.username %}
+            <br>Use the Add Item button above to get started!
+          {% endif %}
+        </p>
       </div>
-    {%endif%}
+    {% endif %}
   </div>
 
   {% for item in items %}

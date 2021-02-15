@@ -3,10 +3,18 @@
 {% block heading %}
   {% if page_obj.number == 1 %}
     <div class="mb-4">
-      <h1>Welcome! Below is my list</h1>
+      <h1>Welcome to MySouko!</h1>
+      <p class="mt-4 ml-2 lead">
+        This is a website I built to keep track of all of the Japanese media that I consume. <br>
+        To create your own list head on over to the <a href="{% url 'register' %}">Register</a> page to get started!<br>
+        For more information on how this site came about, check out the <a href="#">About</a> page.
+      </p>
+      <p class="mt-4 ml-2 lead">
+        Below is my list of all the books, TV shows and games that I've completed entirely in Japanese!
+      </p>
     </div>
   {% endif %}
   <div class="user-list-title mb-4">
-    <h1>JacobCuke's List ({{ page_obj.paginator.count }} items)</h1>
+    <h1>JacobCuke's List ({{ page_obj.paginator.count }} item{{page_obj.paginator.count|pluralize}})</h1>
   </div>
 {% endblock heading %}
