@@ -23,5 +23,5 @@ urlpatterns = [
     path('item/new/', ItemCreateView.as_view(), name='item-create'),
     path('item/<int:pk>/update/', ItemUpdateView.as_view(), name='item-update'),
     path('item/<int:pk>/delete/', ItemDeleteView.as_view(), name='item-delete'),
-    path('toggle_completed/<int:pk>/', views.completed, name='item-toggle-completed'),
+    path('toggle_completed/<int:pk>/<int:offset>/', views.completed, name='item-toggle-completed'),
 ]

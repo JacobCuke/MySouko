@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Item
 from .forms import ItemForm
-from datetime import date
+from datetime import datetime, timedelta
 from django.http import HttpResponse
 from django.views.generic import (
     ListView,
@@ -129,13 +129,16 @@ def mylist(request):
 def completed(request, **kwargs):
     if (request.user.is_authenticated):
         pk = kwargs.get('pk')
-        print(pk)
+        offset = kwargs.get('offset')
         obj = Item.objects.get(pk=pk)
         owner = obj.user
         if (owner == request.user):
             obj.completed = not obj.completed
             if (obj.completed):
-                obj.date_completed = date.today()
+                initial_datetime = datetime.today()
+                datetime_offset = timedelta(minutes=offset)
+                final_datetime = initial_datetime - datetime_offset
+                obj.date_completed = final_datetime.date()
                 obj.save()
                 return HttpResponse(obj.date_completed.strftime("%Y/%m/%d"))
             else:

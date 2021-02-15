@@ -11,8 +11,10 @@ function toggleCompleted(element) {
 }
 
 $('.status-toggle').click(function(){
-    var pk = $(this).attr("data-pk");
-    $.ajax({url: '/toggle_completed/'+ pk, success: function(result){
+    let pk = $(this).attr("data-pk");
+    let d = new Date();
+    console.log(d.getTimezoneOffset());
+    $.ajax({url: '/toggle_completed/'+ pk + '/' + d.getTimezoneOffset(), success: function(result){
         $('#date_completed'+pk).html(result)
     }});
 });
