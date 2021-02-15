@@ -24,6 +24,7 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" href="{% static 'souko/main.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'souko/favicon.ico' %}"/>
 
     <title>MySouko {% block title %}{% endblock title %}</title>
   </head>
@@ -66,6 +67,9 @@
           
           {% block content %}{% endblock %}
         </div>
+      </div>
+      <div class="footer">
+        <small class="text-muted">Contact Me: jacobcuke@gmail.com   GitHub    Favicon provided by <a href="https://icons8.com/">Icons8</a></small>
       </div>
     </div>
 
