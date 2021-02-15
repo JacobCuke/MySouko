@@ -32,6 +32,11 @@
     {% if user.username == view.kwargs.username %}
       <a href="{% url 'item-create' %}" class="btn btn-primary float-right-md float-left-sm"><i class="fas fa-plus mr-2"></i>Add Item</a>
     {% endif %}
+    {% if page_obj.paginator.count <= 0 %}
+      <div class="mt-4 ml-2">
+        <p class="lead">It doesn't look like there's anything here yet!</p>
+      </div>
+    {%endif%}
   </div>
 
   {% for item in items %}

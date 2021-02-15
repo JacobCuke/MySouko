@@ -2,6 +2,6 @@
 
 {% block heading %}
   <div class="user-list-title mb-4">
-    <h1>{{ view.kwargs.username }}'s List ({{ page_obj.paginator.count }} items)</h1>
+    <h1>{{ view.kwargs.username }}'s List ({{ page_obj.paginator.count }} item{{page_obj.paginator.count|pluralize}})</h1>
   </div>
 {% endblock heading %}
