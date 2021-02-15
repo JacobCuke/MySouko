@@ -146,3 +146,7 @@ def completed(request, **kwargs):
                 obj.save()
                 return HttpResponse("")
     return HttpResponse("Access Denied")
+
+
+def about(request):
+    return render(request, 'souko/about.html')

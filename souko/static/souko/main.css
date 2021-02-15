@@ -17,6 +17,33 @@ body {
   margin-bottom: 60px;
 }
 
+.about-me-img img {
+  height: 200px;
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.about-me-title h1{
+  border-bottom: 1px solid #cfcfcf;
+  padding-bottom: 7px;
+  margin-top: 40px;
+  max-width: 300px;
+}
+
+.about-me-content {
+  margin-top: 30px;
+}
+
+.about-me-content h2 {
+  border-bottom: 1px solid #cfcfcf;
+  max-width: 200px;
+  padding-bottom: 7px;
+}
+
 .content-section {
   background-color:#ffffff;
   border: 1px solid #bebebe;
