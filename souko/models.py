@@ -25,7 +25,7 @@ class Item(models.Model):
     ]
 
     title = models.CharField(max_length=100)
-    cover_art = models.ImageField(default='default.png', upload_to='cover_art_pics')
+    cover_art = models.ImageField(default='default.png', upload_to='cover_art_pics', blank=True)
     series = models.CharField(max_length=100)
     genre = models.CharField(max_length=2, choices=GENRE_CHOICES)
     completed = models.BooleanField(default=False)
