@@ -33,6 +33,19 @@ body {
   float: right;
 }
 
+@media (min-width: 460px) {
+  .float-right-md {
+    float: right;
+  }
+}
+
+@media (max-width: 459px) {
+  .float-left-sm {
+    float: none;
+    margin-top: 10px;
+  }
+}
+
 .cover-art {
   display: block;
   margin-left: auto;
