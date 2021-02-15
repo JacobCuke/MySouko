@@ -210,6 +210,17 @@ body {
   background-color: #e27b04;
 }
 
-.bg-r {
-  background-color: red;
+.footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.footer-section {
+  padding-left: 13px;
+  padding-right: 13px;
+  border-right: 1px solid #cfcfcf;
+}
+
+.footer-section:last-of-type {
+  border-right: none;
 }
