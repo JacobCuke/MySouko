@@ -36,15 +36,15 @@ class Item(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self):
-        super().save()
+    # def save(self):
+    #     super().save()
 
-        img = Image.open(self.cover_art.path)
+    #     img = Image.open(self.cover_art.path)
 
-        if img.width > 300 or img.height > 500:
-            output_size = (300, 500)
-            img.thumbnail(output_size)
-            img.save(self.cover_art.path)
+    #     if img.width > 300 or img.height > 500:
+    #         output_size = (300, 500)
+    #         img.thumbnail(output_size)
+    #         img.save(self.cover_art.path)
 
     def get_absolute_url(self):
         return reverse('user-mylist', kwargs={'username': self.user.username})
